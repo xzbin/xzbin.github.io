@@ -1,7 +1,8 @@
 ---
 title: neo4j的学习笔记
 date: 2018-08-17 18:28:18
-categories: [知识图谱,图数据库]
+categories: 
+- 图数据库
 ---
 
 # neo4j 图数据库介绍
