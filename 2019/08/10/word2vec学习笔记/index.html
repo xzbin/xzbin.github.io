@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="2个新颖的方法，大的数据集。 在语法、语义相似度方面都取得最好的性能。 传统的方式是不考虑单词之间的相似性，每个词字典中的索引所代表。这种方式举例来说：N-grams。 但是 简单的技术往往不能对任务有很好的帮助。 本paper提出一个方法：可以训练数十亿的单词，字典中包括百万单词。然后将这些单词的表征维度限制在50~100之间。之前从来没有方法可以做到。 提出了最经典的一个例子 vector(”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="word2vec学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/08/10/word2vec学习笔记/index.html">
+<meta property="og:site_name" content="xzbin">
+<meta property="og:description" content="2个新颖的方法，大的数据集。 在语法、语义相似度方面都取得最好的性能。 传统的方式是不考虑单词之间的相似性，每个词字典中的索引所代表。这种方式举例来说：N-grams。 但是 简单的技术往往不能对任务有很好的帮助。 本paper提出一个方法：可以训练数十亿的单词，字典中包括百万单词。然后将这些单词的表征维度限制在50~100之间。之前从来没有方法可以做到。 提出了最经典的一个例子 vector(”">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/08/10/word2vec学习笔记/nnlm.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/10/word2vec学习笔记/nnlm_des.png">
+<meta property="og:image" content="http://yoursite.com/Users/zhoubin/Desktop/l0f12f8db23f01eb86d0b04f8cc71ff49-s-m46e71d70560ad1f4334f2d156f6a158b%202/word2vec/nnlm_total_f.png">
+<meta property="og:image" content="http://yoursite.com/Users/zhoubin/Desktop/l0f12f8db23f01eb86d0b04f8cc71ff49-s-m46e71d70560ad1f4334f2d156f6a158b%202/word2vec/nnlm_c.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/10/word2vec学习笔记/cbow_origin.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/10/word2vec学习笔记/cbow_new.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/10/word2vec学习笔记/skipgram_origin.png">
+<meta property="og:image" content="http://yoursite.com/2019/08/10/word2vec学习笔记/skipgram_new.png">
+<meta property="og:updated_time" content="2019-08-10T04:03:23.462Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="word2vec学习笔记">
+<meta name="twitter:description" content="2个新颖的方法，大的数据集。 在语法、语义相似度方面都取得最好的性能。 传统的方式是不考虑单词之间的相似性，每个词字典中的索引所代表。这种方式举例来说：N-grams。 但是 简单的技术往往不能对任务有很好的帮助。 本paper提出一个方法：可以训练数十亿的单词，字典中包括百万单词。然后将这些单词的表征维度限制在50~100之间。之前从来没有方法可以做到。 提出了最经典的一个例子 vector(”">
+<meta name="twitter:image" content="http://yoursite.com/2019/08/10/word2vec学习笔记/nnlm.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/10/word2vec学习笔记/">
+
+
+
+
+
+  <title>word2vec学习笔记 | xzbin</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xzbin</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-文章">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            文章
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/word2vec学习笔记/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xzbin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xzbin">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">word2vec学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-10T11:34:53+08:00">
+                2019-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>2个新颖的方法，大的数据集。</p>
+<p>在语法、语义相似度方面都取得最好的性能。</p>
+<p>传统的方式是不考虑单词之间的相似性，每个词字典中的索引所代表。这种方式举例来说：<code>N-grams</code>。</p>
+<p>但是 简单的技术往往不能对任务有很好的帮助。</p>
+<p>本<code>paper</code>提出一个方法：可以训练数十亿的单词，字典中包括百万单词。然后将这些单词的表征维度限制在50~100之间。之前从来没有方法可以做到。</p>
+<p>提出了最经典的一个例子</p>
+<p>vector(”King”) - vector(”Man”) + vec- tor(”Woman”) results in a vector that is closest to the vector representation of the word Queen [20]</p>
+<p>目标是：学习分布式表征，最小化时间复杂度。</p>
+<p><a href="https://blog.csdn.net/YPP0229/article/details/94549081" target="_blank" rel="noopener">分布式特征表达</a></p>
+<p>word2vec提出了两类新的结构：</p>
+<p>首先解释两个概念：</p>
+<p>continuous：连续的是相对于单词的表征来说的，单词表征是非连续的。</p>
+<p>distributed：相对于离散概念来讲，之前表征某个单词是用<code>0</code>或者<code>1</code>。0表示不存在，1表示存在。只需要再特定位置上，用<code>0、1</code>,来区分就足够了。而分布式表征，使用的是多维数据同时来表征。<code>word2vec</code> 训练得到的模型，表征每个单词用500维向量，那么需要这500维同时其作用才可以表征该单词，而不是某个位置上其作用，才可以表征。</p>
+<p>NNLM：在<a href="A Neural Probabilistic Language Model Yoshua">论文</a> 中提出该结构。其经典图如下：</p>
+<p><img src="./nnlm.png" alt="nnlm"></p>
+<p>上图的<code>f(x)</code> 在论文中的论述有两部分：</p>
+<p><img src="./nnlm_des.png" alt=""></p>
+<p>需要注意的点：</p>
+<ol>
+<li>其中$w_i^{t-1}$ 该表示单词从 <code>i</code> 一直到<code>t-1</code> 的序列。</li>
+<li>上图中的虚线表示可有可无，后续文中会有体现。</li>
+</ol>
+<p>上述公式包含两个映射：<code>C</code> 和<code>g</code>。<code>C</code> 可以理解成<code>embedding</code>层，例如<code>C(i)</code> 则是单词<code>i</code> 的 feature vector（这里不用纠结，为什么不是<code>index</code> ，理解其概念就好）。<code>g</code>  可以实现被前馈网络，循环网络，或者其他的参数函数。</p>
+<p>所以，整个模型的结构大概可以做如下描述：</p>
+<p><img src="/Users/zhoubin/Desktop/l0f12f8db23f01eb86d0b04f8cc71ff49-s-m46e71d70560ad1f4334f2d156f6a158b%202/word2vec/nnlm_total_f.png" alt=""></p>
+<p>其中<code>W</code> 可以选择是否为<code>0</code>，<code>x</code> 是特征向量的拼接，原文叙述：<code>x is the word features layer activation vector, which is the concatenation of the input word features from the matrix C</code>。</p>
+<p><img src="/Users/zhoubin/Desktop/l0f12f8db23f01eb86d0b04f8cc71ff49-s-m46e71d70560ad1f4334f2d156f6a158b%202/word2vec/nnlm_c.png" alt=""></p>
+<p>word2vec 该模型其实提出了两个架构，一个是<code>CBOW</code>，一个是<code>Skip-gram</code>。</p>
+<h2 id="CBOW"><a href="#CBOW" class="headerlink" title="CBOW"></a>CBOW</h2><p>该结构与上文中提到的NNLM结构非常相似，但是隐藏层被移除了，映射层被所有单词共享。这里可能会有疑问，什么叫 映射层被所有单词共享？原文：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The first proposed architecture is similar to the feedforward NNLM, where the non-linear hidden layer is removed and the projection layer is shared for all words (not just the projection matrix); thus, all words get projected into the same position (their vectors are averaged)</span><br></pre></td></tr></table></figure>
+<p>其文中对<code>CBOW</code>结构的描述如下：</p>
+<center class="half" width="600">
+    <img src="./cbow_origin.png" width="300">
+    <img src="./cbow_new.png" width="300">
+</center>
+
+<p>我看到这是比较懵逼的，看到这张图我更加懵逼了，因为这张图省略了大量的细节，于是我找到了另外一篇<a href="">文章</a>：</p>
+<p>这张图相对来说，清晰很多了。其中$W_{V<em>N}$ 和 $W^{‘}_{N</em>V}$  均为权重矩阵。</p>
+<p> 用一句话来讲：是利用上下文内容来预测当前词。</p>
+<p>更为精确的过程描述：上下文内容，均用<code>bag of word</code> 模型来表示，然后权重矩阵的映射到隐藏层，求其均值，然后在通过权重矩阵求出当前词。</p>
+<p>举例来讲：一句话 我是中国人。</p>
+<p>每个字均用词袋模型来表示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">我: <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> </span><br><span class="line">是: <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> </span><br><span class="line">中: <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> </span><br><span class="line">国: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span> <span class="number">0</span> </span><br><span class="line">人: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>因为该模型是利用上下文来预测中间词。我们选择中间词是<code>中</code> 。那么，我们用 <code>我</code>,<code>是</code>,<code>国</code>,<code>人</code> 来预测<code>中</code>。</p>
+<p>随机初始化 <script type="math/tex">W_{V*N}$ 、$W_{N*V}</script></p>
+<p>则根据上述运算顺序：</p>
+<ol>
+<li><script type="math/tex; mode=display">V_{hidden} = \frac{1}{4}(V_我 * W_{V*N} + V_是 * W_{V*N}+V_国 * W_{V*N} + V_人 * W_{V*N})</script></li>
+<li><script type="math/tex; mode=display">pred = V_{hidden} * W_{N*V}</script></li>
+<li>对比 <script type="math/tex">pred</script> 与<script type="math/tex">y</script>。</li>
+</ol>
+<h2 id="Skip-gram-Model"><a href="#Skip-gram-Model" class="headerlink" title="Skip-gram Model"></a>Skip-gram Model</h2><p>与<code>CBOW</code>完全不同，其可以理解成<code>CBOW</code>的逆过程。</p>
+<p>用一句话来解释：利用当前词来预测上下文。</p>
+<p>更为精确的过程描述：当前词 通过权重矩阵的映射到隐藏层，然后在通过权重矩阵求出上下文内容。</p>
+<center class="half" width="600">
+    <img src="./skipgram_origin.png" width="300">
+    <img src="./skipgram_new.png" width="300">
+</center>
+
+
+
+
+
+<ol>
+<li><script type="math/tex; mode=display">V_{hidden} = V_中 * W_{V*N}</script></li>
+<li><script type="math/tex; mode=display">pred = V_{hidden} * W_{N*V}</script></li>
+<li>对比 <script type="math/tex">pred</script> 与<script type="math/tex">y</script>。</li>
+</ol>
+<h1 id="优化方式"><a href="#优化方式" class="headerlink" title="优化方式"></a>优化方式</h1><p>层次化<code>softmax</code> </p>
+<p>负采样</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/25/networkX-learning/" rel="next" title="networkX learning">
+                <i class="fa fa-chevron-left"></i> networkX learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xzbin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CBOW"><span class="nav-number">1.</span> <span class="nav-text">CBOW</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Skip-gram-Model"><span class="nav-number">2.</span> <span class="nav-text">Skip-gram Model</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#优化方式"><span class="nav-number"></span> <span class="nav-text">优化方式</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xzbin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
