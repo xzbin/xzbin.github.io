@@ -5,7 +5,7 @@ categories:
 - 知识图谱
 ---
 
-最近一直在看知识图谱相关内容，[networkx](https://networkx.github.io/)是python下一款优秀的图计算处理工具，下文既是教程学习笔记。
+最近一直在看知识图谱相关内容，[networkx](https://networkx.github.io/)是python下一款优秀的图计算处理工具，下文是教程学习笔记。
 
 ## A.1 Create a graph
 
