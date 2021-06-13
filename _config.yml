@@ -79,7 +79,6 @@ theme: next
 ## Docs: https://hexo.io/docs/deployment.html
 # https://github.com/xzbin/xzbin.github.io.git
 
-
 deploy:
   type: git
   repo: https://github.com/xzbin/xzbin.github.io.git
