@@ -10,15 +10,23 @@ categories: [NLP]
 
 ALBERT的三项贡献：
 
-Factorized embedding parameterization
+## Factorized embedding parameterization
+
+如果 E ≡ H, H的增加会导致embeding matrix的增加，因为其size 是 V* E。但是大多数参数的更新在训练的过程中是非常稀疏的。
+
+这部分使用了因式分解，使得H $\gg$ E。$O(V × H)$ to $O(V × E + E × H)$
+
+##  Cross-layer parameter sharing
+
+提出了跨层参数共享的方案提高了参数的利用率。
+
+## Inter-sentence coherence loss
+
+BERT的两个任务是`MLM`和`NSP`、但是相比`MLM`来讲，NSP任务比较简单，其将`主题预测`与`连续性预测`集中在一个任务里面，但是`主题预测`相比`连续性预测`较为简单，但是`MLM`任务对主题预测也覆盖了比较多的内容。作者提出了一个基于句子顺序的损失，该损失的正样本是使用的和BERT相同的样本，负样本将两条句子逆序。`The SOP loss uses as positive examples the same technique as BERT (two consecu- tive segments from the same document), and as negative examples the same two consecutive seg- ments but with their order swapped.`
 
 
 
-Cross-layer parameter sharing
 
-
-
-Inter-sentence coherence loss
 
 
 
