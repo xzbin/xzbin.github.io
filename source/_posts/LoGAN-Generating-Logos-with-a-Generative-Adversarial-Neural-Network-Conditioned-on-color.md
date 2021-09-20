@@ -3,9 +3,11 @@ title: >-
   LoGAN: Generating Logos with a Generative Adversarial Neural Network
   Conditioned on color
 categories:
-  - GAN
+  - [论文阅读]
+  - [图像]
 date: 2021-06-16 13:43:44
 tags:
+  - GAN
 ---
 
 

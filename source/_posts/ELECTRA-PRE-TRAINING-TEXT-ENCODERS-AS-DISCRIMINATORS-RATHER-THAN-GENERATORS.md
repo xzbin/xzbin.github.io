@@ -1,4 +1,10 @@
 ---
 title: 'ELECTRA: PRE-TRAINING TEXT ENCODERS AS DISCRIMINATORS RATHER THAN GENERATORS'
-tags:
+date: 2021-09-19 16:53:26
+categories:
+  - [NLP]
+  - [论文阅读]
+tags: 
+  - ELECTRA
 ---
+
