@@ -1,5 +1,5 @@
 ---
-title: faiss 常用方式
+title: faiss 实战
 date: 2021-09-19 21:12:29
 tags: [faiss]
 categories: 
