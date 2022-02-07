@@ -1,0 +1,27 @@
+---
+title: ViLT Vision-and-Language Transformer Without Convolution or Region Supervision
+categories:
+  - [多模态]
+  - [论文精读]
+date: 2022-02-07 18:59:21
+tags:
+---
+
+`Vision-and-Language Pretraining (VLP)` 在`vision`和`NLP`下游任务中表现非常好。目前的`VLP`方法非常依赖于图像特征提取，其中大部分涉及`region supervision`。
+
+我们提出了一个最小的`VLP`模型，`Vision-and-Language Transformer (ViLT)`。其中，`visual inputs`的处理也被简化无卷积方式，与文本输入。
+
+我们表明，`ViLT`比以前的`VLP`模型快60倍。对下游任务具有更好的性能。
+
+作者提出了新`VLP`模型分类，基于以下两点:`1: `这两种模态是否具有相同水平的表达【在专用参数和/或计算方面的】。`2: `这两种模态是否会在一个深度网络中融合。
+
+由此引出的4个原型，`(a):` `VSE++`和`SCAN`属于，其分别使用了分离的`image`和`text`的`encoder`，但是前者的`encoder`更为`重`一些，使用` dot products`或`shallow attention layers`表征两种模态的相似性；`(b):` `CLIP`也使用了分离的`encoder`，两模态的`encoder`是一样`重`，两个模态的特征向量依然使用`dot product`进行交互，`CLIP`在`zero-shot`图像到文本检索方面表现出色，但是在其他图文下游任务表现一般；`(c):`最近更多的`deep transformer`模型被用来融合两个模态的特征，此时卷积网络仍用来编码图像特征，因此占据了大部分计算量，所以与`(a):`一样，图像的`encoder`更为`重`一些；`(d):`文中的`ViLT`，图像的`encoder`变得更为`轻`，模型特征的模型层变得更为`重`。图示如下: ![vlp_four](./vlp_four.png)
+
+
+## Modality Interaction
+`Bugliarello et al. (2020)`将特征融合分成2类：1. 单流方法（`Visual-BERT`，`UNITER`），两种模态在输入层进行串联，共同进行后续操作；2. 双流方法（`ViLBERT`，`LXMERT`）两个模态并没有在输入级别串联。我们的融合模块采用单流方法，因为双流方法引入了额外的参数。
+
+## Vision-and-Language Transformer
+`visual embedding`是现有的`VLP`模型的瓶颈，原因是：现有的`VLP`模型在`text embedder`上面是相同的，在` visual embedders`是不同的。
+
+###  Model Overview
