@@ -21,7 +21,19 @@ tags:
 ## Modality Interaction
 `Bugliarello et al. (2020)`将特征融合分成2类：1. 单流方法（`Visual-BERT`，`UNITER`），两种模态在输入层进行串联，共同进行后续操作；2. 双流方法（`ViLBERT`，`LXMERT`）两个模态并没有在输入级别串联。我们的融合模块采用单流方法，因为双流方法引入了额外的参数。
 
-## Vision-and-Language Transformer
+## Visual Embedding Schema
 `visual embedding`是现有的`VLP`模型的瓶颈，原因是：现有的`VLP`模型在`text embedder`上面是相同的，在` visual embedders`是不同的。
+`Region Featur`: `VLP`模型中占主导地位，它们来自预训练好的目标检测器，比如：基于`Visual Genome (VG)`数据库训练的`Faster R-CNN`。`RPN`网络会产生数千个`RoI`，`Non-maximum suppression`会减少`RoI`的数据量到`1~2K`。再经过一些池化操作(比如` RoI Align`)，`RoI heads`将`ROI`提取`region features`。`NMS`将`feature`数量减少到100一下。但是非并行的`NMS`是一个严重的运行瓶颈。当类别数变大的时候，这个问题会变得更为严重。
+
+`grid features`：直接使用`grid features`被` VQA-specific models`提出。
+`Pixel-BERT`也是使用`grid features`的`VLP`模型。
+`grid features`会被直接输入模态交互层。`grid features`
+但是`grid features`并不是首选，`CNN`非常`重`，非常消耗计算资源。
+
+`Patch Projection`: 为了减少开销，我们使用了最简单的`embedding`方案：对`image patch`的线性映射。`path projection embedding`是由`ViT`引入，首先用于分类任务。`Patch Projection`将`image embedding`大大简化为`textual embedding`。
 
 ###  Model Overview
+`ViLT`具有非常小的视觉`embedding pipeline`，并遵循单流方法，因此`ViLT`可以说是的最简单架构的`VLP`模型。
+
+我们初始化`interaction transformer`层使用的是`ViT`的权重，而且不是`BERT`，主要是因为我们想利用其处理视觉特征的能力。
+![vlp_progress](./vlp_progress.png)
