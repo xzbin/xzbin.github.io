@@ -37,3 +37,29 @@ tags:
 
 我们初始化`interaction transformer`层使用的是`ViT`的权重，而且不是`BERT`，主要是因为我们想利用其处理视觉特征的能力。
 ![vlp_progress](./vlp_progress.png)
+
+`VIT`的`encoder`包含了多个堆叠的多头attention(MSA)和一个MLP层。`LN`层的位置再`MSA`和`MLP`之前，这与`BERT`不同。
+
+详细的模型结构如下图所示：
+![model_overview](./model_overview.png)
+
+文本输入 $t\in R^{L*|V|}$ 通过 word embedding 矩阵 和 position矩阵 映射成`H`维度。
+![text-emb-H](./text-emb-H.png)
+
+图像输入 $ I\in R^{C*H*W}$ 通过 word embedding 矩阵 和 position矩阵 映射成`H`维度。
+![image-emb-H](./image-emb-H.png)
+
+###  Pretraining Objectives
+`ViLT`有2个目标函数：`masked language modeling (MLM)` and `image text matching (ITM)`。
+
+`ITM`: 以0.5概率随机替换图像，生成负样本。另外作者还设计了`WPA`损失用来计算word和patch的对齐分数。
+`MLM`: 预测被mask掉的 token。与`BERT`的MLM损失一样。
+
+### Whole Word Masking
+mask掉整个单词。由于 `wordpiece`会将一个单词分成多个 `token`。所以`mask`的时候，需要将所有的token全部mask掉。
+mask的概率是 15%.
+### Image Augmentation
+在 `finetuning` 的时候使用了RandAugment。除去了`color inversion` 和 `cutout`。
+
+其他资料：
+https://huggingface.co/docs/transformers/v4.16.2/en/model_doc/vilt
