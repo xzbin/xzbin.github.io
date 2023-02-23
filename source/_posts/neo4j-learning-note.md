@@ -1,25 +1,40 @@
 ---
 title: neo4j的学习笔记
 date: 2018-08-17 18:28:18
+tags: [neo4j]
 categories: 
-- 图数据库
+  - [工程化]
+  - 图数据库
 ---
+
 
 # neo4j 图数据库介绍
 
 1. neo4j 图由点和边组成。点和边都可以与有各自的属性和label。
 2. 一个简单的例子：人居住在城市中、城市是国家的一部分。
 3. 节点：用()来表示
+4. neo4j 分成社区版本和专业版。
+   1. [社区版](https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/neo4j-admin-store-info/#neo4j-admin-store-standard)节点和关系支持数量均是 $2^{35}$  
+   2. [专业版](https://neo4j.com/docs/operations-manual/current/tools/neo4j-admin/neo4j-admin-store-info/#neo4j-admin-store-high-limit)节点和关系支持数量均是 $2^{50}$
 
+## node表示
 ```
+() 表示节点
+(p:Person)  p表示 节点变量； Person表示 标签
+(p:Person {name: 'tom'})  {}表示属性； name 是tom
+
+
 1. (matrix)：表示 一个名字叫matrix 的节点
 2. (matrix:Movie)一个名字叫matrix 的节点，label 叫 Movie；
 3. (matrix:Movie{title:"The Matrix"})一个名字叫matrix 的节点,label叫Movie,属性值title为The Matrix
 ```
-
-1. 关系：用--（--> 或者 <--）表示
-
+## 关系
 ```sql
+两个节点之间的关系使用箭头表示： arrow --> or <--
+无向图关系用 -- 表示
+ 
+(p1:Person)-[rel:IS_FRIENDS_WITH {since: 2018} ]->(p2:Persion)  rel表示关系变量； IS_FRIENDS_WIT 表示标签; 属性：since：2018
+
 1. -- 表示无向
 2. -->、<-- 表示有向图
 3. -[:ACTED_IN]->: 有向、label
@@ -27,7 +42,8 @@ categories:
 5. -[role:ACTED_IN {roles: ["Neo"]}]-> 有向、label、名字、属性
 ```
 
-1. 常用的语句
+
+## 常用的语句
 
 ```
 1. CREATE (:Movie { title:"The Matrix",released:1997 })
@@ -222,5 +238,141 @@ Cypher 分成3中数据类型 Property types、Structural types、Composite type
     - REQUIRE
     - SCALAR
 
+## 增删改查[简单示例]
+```
+# 增 CREATE/MERGE
+CREATE (p:Person {name: '123'}) 创建一个节点
+MERGE (p:Person {name: '123'}) 如果存在该节点则不创建，否则创建这个节点。
+ 
+# 查 MATCH
+类似于SQL 中的 SELECT
+MATCH(p: Person) return p limit 20 查找所有节点，返回20个
+MATCH(p: Person {name:123}) return p limit 20 查找name是123的节点，返回20个
+ 
+ 
+# 删 DELETE
+MATCH(p: Person) delete p 删除所有节点，但是该节点必须不能存在关系
+MATCH(p: Person) detach delete p 删除所有节点，以及该节点的所有关系。
+ 
+# 改 SET
+MATCH (n:Person {name: 'Jennifer'}) SET n.name= '123'
+```
 
+# 数据插入
+```
+# 少量数据 【百条所有数据】
+使用Cypher 语句插入
+ 
+# 小文件插入 【10m左右】
+文件需放在 import 文件夹中。
+LOAD CSV WITH HEADERS FROM 'file:///companies.csv' AS row
+WITH row WHERE row.Id IS NOT NULL
+MERGE (c:Company {companyId: row.Id});
+ 
+ 
+ 
+# 大文件插入
+文件需放在import 文件夹中
+./bin/neo4j-admin database import full --nodes=import/$targetNode1 --nodes=import/$targetNode2 neo4j  --relationships=import/$targetRel --overwrite-destination
+```
 
+# go 调用 neo4j 服务
+
+```golang
+
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j"
+	"github.com/neo4j/neo4j-go-driver/v5/neo4j/dbtype"
+	"log"
+)
+
+func NodeQuery(session neo4j.SessionWithContext, cypherCommand string, ctx context.Context, indexes []int) ([]any, error) {
+
+	var nodes []any
+	_, err := session.ExecuteRead(ctx, func(transaction neo4j.ManagedTransaction) (any, error) {
+
+		result, err := transaction.Run(ctx, cypherCommand, nil)
+		if err != nil {
+			log.Printf("[ERROR] cypher: %v\n", cypherCommand)
+			return nil, err
+		}
+
+		for result.Next(ctx) {
+			node := result.Record().Values
+
+			for _, index := range indexes {
+				//fmt.Printf("node[index]: %v\n", node[index])
+				nodes = append(nodes, node[index])
+			}
+		}
+
+		if err = result.Err(); err != nil {
+			return nil, err
+		}
+		return nodes, nil
+		//return nodes, errors.New("123")
+		//}, neo4j.WithTxTimeout(1*time.Microsecond))
+		//}, neo4j.WithTxTimeout(4*time.Second))
+	})
+	if err != nil {
+		log.Printf("[ERROR] ExecuteRead： %v\n", err)
+		return nil, err
+	}
+
+	return nodes, nil
+}
+
+func RecallPath(session neo4j.SessionWithContext, ctx context.Context) {
+	command := fmt.Sprintf("match (p) return p limit 10")
+
+	nodes, err := NodeQuery(session, command, ctx, []int{0})
+	if err != nil {
+		log.Printf("[ERROR] recallPath1: %v\n ", err)
+		return
+	}
+
+	for _, node := range nodes {
+		propertiesName := node.(dbtype.Node).GetProperties()["name"]
+		line := fmt.Sprintf("%v", propertiesName)
+		log.Printf("result: %v\n", line)
+	}
+}
+
+func Query(driver neo4j.DriverWithContext, ctx context.Context) {
+
+	session := driver.NewSession(ctx, neo4j.SessionConfig{AccessMode: neo4j.AccessModeWrite})
+	defer session.Close(ctx)
+
+	RecallPath(session, ctx)
+
+}
+
+func searchNodeFromNeo4j() {
+	dbUri := ""
+	username := "neo4j"
+	password := "12345678"
+	driver, err := neo4j.NewDriverWithContext(dbUri, neo4j.BasicAuth(username, password, ""))
+	if err != nil {
+		panic(err)
+	}
+
+	ctx := context.Background()
+
+	defer driver.Close(ctx)
+
+	Query(driver, ctx)
+
+	log.Printf("FINISH WRITE TARGET FILE")
+
+}
+
+func main() {
+
+	searchNodeFromNeo4j()
+}
+
+```
