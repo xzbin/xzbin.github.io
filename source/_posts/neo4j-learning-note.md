@@ -1,5 +1,5 @@
 ---
-title: neo4j的学习笔记
+title: neo4j介绍
 date: 2018-08-17 18:28:18
 tags: [neo4j]
 categories: 

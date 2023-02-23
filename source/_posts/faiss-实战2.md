@@ -1,5 +1,5 @@
 ---
-title: faiss 实战2
+title: faiss 实战
 date: 2023-02-23 09:36:59
 tags: [faiss]
 categories: 

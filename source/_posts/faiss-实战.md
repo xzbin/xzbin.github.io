@@ -1,5 +1,5 @@
 ---
-title: faiss 实战
+title: faiss 介绍
 date: 2021-09-19 21:12:29
 tags: [faiss]
 categories: 
@@ -25,40 +25,6 @@ pip install faiss-cpu
 | Exact Search for Inner Product | `IndexFlatIP` | `"Flat"`        | `d`             | `4*d`        | yes        | also for cosine (**normalize vectors beforehand**) |
 
 * 常用的距离度量`cosine `，但是使用之前需要进行`normalize `，否则不会生效。
-
-## 带有id的查询方案
-
-```python
-# faiss 增加ids
-import numpy as np
-import faiss  # make faiss available
-
-
-dimension = 64
-num_train = 1000
-num_val = 10
-
-train_embeeding = np.random.random((num_train, dimension)).astype('float32')
-query_embedding = np.random.random((num_val, dimension)).astype('float32')
-train_ids = np.random.randint(0, 5, num_train).astype('int')  # 生成ids
-
-faiss.normalize_L2(train_embeeding)
-faiss.normalize_L2(query_embedding)
-
-index = faiss.IndexFlatIP(dimension)  # build the index
-index2 = faiss.IndexIDMap(index)
-print(index.is_trained)
-index2.add_with_ids(train_embeeding, train_ids)
-print(index.ntotal)
-
-k = 4  # we want to see 4 nearest neighbors
-D, I = index2.search(query_embedding[:5], k)  # sanity check
-print('I', I)
-print('D', D)
-```
-
-
-
 
 
 ## 常用链接
