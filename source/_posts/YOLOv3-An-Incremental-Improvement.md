@@ -1,8 +1,7 @@
 ---
 title: 'YOLOv3: An Incremental Improvement'
 categories:
-  - [论文精读]
-  - [目标检测]
+  - [论文阅读]
 date: 2021-06-13 22:51:48
 tags:
   - YOLOv3

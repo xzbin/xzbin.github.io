@@ -1,10 +1,10 @@
 ---
 title: Multi-Interest Network with Dynamic Routing for Recommendation at Tmall
 categories:
-  - [召回]
-  - [论文精读]
+  - [论文阅读]
 date: 2022-02-07 15:30:56
 tags:
+  - [召回]
 ---
 
 推荐系统通常包括`matching`阶段和`ranking`阶段，`matching`阶段检索与用户兴趣相关的候选项，而`ranking`阶段按用户兴趣对候选项进行排序。

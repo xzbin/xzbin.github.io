@@ -4,10 +4,10 @@ title: >-
   Conditioned on color
 categories:
   - [论文阅读]
-  - [图像]
 date: 2021-06-16 13:43:44
 tags:
   - GAN
+  - [图像]
 ---
 
 

@@ -8,7 +8,7 @@ subtitle:
 description:
 keywords:
 author: xzbin
-language:
+language: zh-CN
 timezone:
 
 # URL
@@ -46,7 +46,15 @@ highlight:
   line_number: true
   auto_detect: false
   tab_replace:
-  
+
+
+# MathJax
+math:
+  engine: 'mathjax'
+  mathjax:
+    src: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML   
+
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)

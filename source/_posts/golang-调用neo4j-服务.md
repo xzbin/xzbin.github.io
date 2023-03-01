@@ -1,10 +1,11 @@
 ---
 title: golang 调用neo4j 服务
 date: 2023-02-23 11:39:02
-tags: [neo4j]
+tags: 
+	- [neo4j]
+	- 图
 categories: 
-  - [工程化]
-  - 图数据库
+  - [工程]
 ---
 
 # 前言

@@ -2,6 +2,9 @@
 title: Billion-scale Commodity Embedding for E-commerce Recommendation in Alibaba
 date: 2022-02-06 18:38:44
 tags:
+    - CTR
+categories:
+  - [论文阅读]
 ---
 
 该方案主要应用于淘宝直播平台，通过A/B测试，我们发现在线点击率（CTR）比之前淘宝广泛使用的基于协同过滤的方法有所提高。

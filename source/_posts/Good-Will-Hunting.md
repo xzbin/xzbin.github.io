@@ -1,7 +1,10 @@
 ---
 title: Good Will Hunting
 date: 2016-12-17 22:57:19
-categories: [电影]
+categories: 
+    - [随笔]
+tags:
+    - 电影
 ---
 心之所愿，无所不成
 <!--more -->

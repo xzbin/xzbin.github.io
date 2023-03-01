@@ -2,7 +2,9 @@
 title: networkX learning
 date: 2018-08-25 15:49:27
 categories: 
-- 知识图谱
+    - 工程
+tags:
+    - 图
 ---
 
 最近一直在看知识图谱相关内容，[networkx](https://networkx.github.io/)是python下一款优秀的图计算处理工具，下文是教程学习笔记。

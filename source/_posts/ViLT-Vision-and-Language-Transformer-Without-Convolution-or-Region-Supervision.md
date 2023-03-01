@@ -1,10 +1,11 @@
 ---
 title: ViLT Vision-and-Language Transformer Without Convolution or Region Supervision
 categories:
-  - [多模态]
-  - [论文精读]
+  - [论文阅读]
 date: 2022-02-07 18:59:21
 tags:
+  - [多模态]
+  - VILT
 ---
 
 `Vision-and-Language Pretraining (VLP)` 在`vision`和`NLP`下游任务中表现非常好。目前的`VLP`方法非常依赖于图像特征提取，其中大部分涉及`region supervision`。

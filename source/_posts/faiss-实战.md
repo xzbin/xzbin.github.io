@@ -1,9 +1,10 @@
 ---
 title: faiss 介绍
 date: 2021-09-19 21:12:29
-tags: [faiss]
+tags: 
+  - [faiss]
 categories: 
-  - [工程化]
+  - [工程]
 ---
 
 ## faiss 简介

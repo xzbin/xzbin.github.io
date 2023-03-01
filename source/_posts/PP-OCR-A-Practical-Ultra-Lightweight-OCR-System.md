@@ -1,11 +1,10 @@
 ---
 title: 'PP-OCR: A Practical Ultra Lightweight OCR System'
 categories:
-  - [OCR]
-  - [论文精读]
+  - [论文阅读]
 date: 2022-02-05 15:48:36
 tags:
-  - PP-OCR
+  - OCR
 ---
 `PP-OCR` 在识别6622个中文字符模型尺寸有`3.5M`，63个字母数字符号的模型有`2.8M`。该论文在增强模型能力和减少模型尺寸方面做了很多尝试。同时随着论文放出了多个模型英文和中文模型，其中包括`text detector【97K images are used】`、`direction classifier【600K images are used】`、`text recognizer【17.9M images are used】`
 

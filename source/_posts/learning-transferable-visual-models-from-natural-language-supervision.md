@@ -2,8 +2,10 @@
 title: learning transferable visual models from natural language supervision
 date: 2022-05-04 13:11:49
 categories:
+  - [论文阅读]
+tags:
   - [多模态]
-  - [论文精读]
+  - CLIP
 ---
 
 `CLIP`: Contrastive Language-Image Pre-training

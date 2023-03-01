@@ -1,9 +1,10 @@
 ---
 title: faiss 实战
 date: 2023-02-23 09:36:59
-tags: [faiss]
+tags: 
+    - [faiss]
 categories: 
-  - [工程化]
+    - [工程]
 ---
 
 ## faiss召回CPU代码

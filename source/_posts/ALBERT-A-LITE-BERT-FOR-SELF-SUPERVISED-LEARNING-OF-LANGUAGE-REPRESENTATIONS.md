@@ -5,6 +5,7 @@ categories:
   - [论文阅读]
 date: 2021-09-19 16:52:56
 tags: 
+  - BERT
   - ALBERT
 ---
 
