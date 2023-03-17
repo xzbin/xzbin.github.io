@@ -48,11 +48,17 @@ highlight:
   tab_replace:
 
 
+excerpt:
+  depth: 2  #按层来算，也就是按代码块来算
+  excerpt_excludes: []
+  more_excludes: []
+  hideWholePostExcerpts: true
+
 # MathJax
-math:
-  engine: 'mathjax'
-  mathjax:
-    src: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML   
+# math:
+#   engine: 'mathjax'
+#   mathjax:
+#     src: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML   
 
 
 # Home page setting

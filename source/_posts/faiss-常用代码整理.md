@@ -1,11 +1,14 @@
 ---
-title: faiss 实战
+title: faiss 常用代码整理
 date: 2023-02-23 09:36:59
 tags: 
     - [faiss]
 categories: 
     - [工程]
 ---
+
+# 概述
+整理下`faiss`在工作中常用的代码。
 
 ## faiss召回CPU代码
 ```python

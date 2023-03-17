@@ -1,7 +1,6 @@
 ---
 title: 'ALBERT: A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS'
 categories:
-  - [NLP]
   - [论文阅读]
 date: 2021-09-19 16:52:56
 tags: 
@@ -38,14 +37,3 @@ BERT的两个任务是`MLM`和`NSP`、但是相比`MLM`来讲，NSP任务比较�
 ## ALBERT试验结果:
 
 ![](./albert试验结果.png)
-
-
-
-## 代码展示
-
-基于transformers 库中的 [albert 模型](https://huggingface.co/transformers/model_doc/albert.html) 来构建。包括 数据的处理、分词，模型的输出。
-
-![](./albert_代码展示.png)
-
-
-
