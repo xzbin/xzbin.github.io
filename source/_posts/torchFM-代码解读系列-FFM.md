@@ -1,5 +1,5 @@
 ---
-title: torchFM 代码解读系列-FFM
+title: Field-aware Factorization Machines for CTR Prediction
 date: 2023-02-23 15:45:47
 tags: 
     - 代码解读

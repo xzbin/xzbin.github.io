@@ -6,21 +6,15 @@ date: 2023-03-02 10:37:04
 tags:
     - 多模态
     - BEit3
-    - BEit
-    - Semantic Segmentation
-    - Image Classification
-    - Object Detection
-    - Instance Segmentation
-    - Image-Text Retrieval
-    - Image Captioning
-    - Visual Reasoning
-    - VQA
 categories:
   - [论文阅读]
 ---
 个人以为：该模型确实具备了大一统的`Level`，模型的设计方面：简单、优美、有效。
 ****
 
+# 文章idea
+* 将`image`也看做是一种语言:`foreign language`。
+* 没有使用多任务损失，因为作者认为这对模型是一种阻碍。因此仅仅使用一个损失。
 
 # 文章主旨
 * 号称多模态进入了大一统的时代，提出了`BEiT-3`模型。

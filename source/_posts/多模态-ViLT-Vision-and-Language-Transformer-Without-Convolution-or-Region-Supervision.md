@@ -2,16 +2,17 @@
 title: ViLT Vision-and-Language Transformer Without Convolution or Region Supervision
 categories:
   - [论文阅读]
-date: 2022-02-07 18:59:21
+date: 2023-02-07 18:59:21
 tags:
   - 多模态
-  - VILT
-  - VQA
-  - Retrieval
-  - NLVR2
+  - ViLT
 ---
-# 文章主旨
-* 提出了新的模型架构 `ViLT`。
+
+# 文章idea
+* 文章认为`heavy image-encoder`无论在训练还是在真实的使用场景都是不好的，因此作者使用了足够`light` 并且`fast`的方式：直接怼`path`进行`linear projection`。
+
+# 文章贡献
+* 提出了非常简单的多模态模型架构 `ViLT`。
 
 # 模型细节
 ![model_overview](./model_overview.png)
@@ -55,13 +56,9 @@ tags:
 ## 数据
 ![vilt.png](./vilt.png)
 该模型只评估了 `V-L` 任务。
-### VAQ & NLVR2
-* `VAQ`: 本质上是分类任务，`The VQAv2 task asks for answers given pairs of an image and a question in natural language`
-  
-* `NLVR2`: 本质上也是分类任务，但是与传统的任务不同：`we use the pair method. Here, the triplet input is reformulated into two pairs: (question, image1) and (question, image2). The head takes the concatenation of two pooled representations (p).`
 
-![vilt_1.png](./vilt_1.png)
-
+## 下游实验
+此处只考虑 retrieval 性能
 ### retrieval
 文章分别统计了模型在`zero-shot`与`fintune`后的性能表现，由于模型结构的特殊性，所以再检索任务的时候，不能使用`cos 相似度`的方式。只能使用`ITM head`的输出。
 #### Zero-shot 性能

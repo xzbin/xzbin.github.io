@@ -1,5 +1,5 @@
 ---
-title: torchFM 代码解读系列-FM
+title: Factorization Machines
 date: 2023-02-23 15:45:47
 tags: 
     - 代码解读

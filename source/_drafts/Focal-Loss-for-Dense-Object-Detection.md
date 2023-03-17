@@ -5,7 +5,6 @@ categories:
 date: 2021-09-19 16:53:40
 tags:
   - Focal Loss
-  - 图像
   - 目标检测
 ---
 

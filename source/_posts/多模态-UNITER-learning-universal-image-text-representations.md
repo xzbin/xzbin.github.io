@@ -3,6 +3,7 @@ title: 'UNITER: learning universal image-text representations'
 date: 2023-02-24 20:41:28
 tags:
     - 多模态
+    - UNITER
 categories:
   - [论文阅读]
 ---
@@ -11,7 +12,7 @@ categories:
 * 之前的图文相关任务均是`task-specific`，相互之间不能泛化，缺少统一解决`V+L`的模型方案。
 
 # 文章贡献
-* 提出了新的多模态框架`UNITER`。
+* 提出了新的多模态框架`UNITER [UNiversal Image-TExt Representation]`。
 * 而且在多个`V+L`任务中取得`SOTA`
 
 
@@ -29,11 +30,17 @@ categories:
 * `Text Embedder` 与`BERT`相同，使用`WordPiece`提取句子中的`token`。将`token embedding` 与 `position embedding` 结合在一起。
 * 最终图像与文本特征交叉层使用的 `transformer-Encoder`。
 
+## 特征对齐 
+* 标准的`transformer-encoder` 结构，不做过多赘述。
+  
 ## 损失
 * 该框架有三个损失函数：`Masked Language Modeling (MLM), Image Text Matching (ITM), and Masked Region Modeling (MRM, with three variants)`
 * `MLM`: 无需过多赘述
 * `ITM`：无需过多赘述
 * `MRM`: 随机`mask` 15%的`region`，其值用`0`代替，与文本用离散`[mask]`表示不同。
+  * `Masked Region Feature Regression`: `target`是`region`特征，连续值，`L2 loss`。
+  * `Masked Region Classification`: `target`是`region`的标签类别，交叉熵损失。
+  * `Masked Region Classification with KL-Divergence (MRC-kl)`：`target`是`region`特征，连续值，但是使用`KL-Divergence`损失，衡量两个分布的差异。
 
 
 # 模型试验

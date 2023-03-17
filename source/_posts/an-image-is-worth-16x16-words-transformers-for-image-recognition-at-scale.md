@@ -2,9 +2,8 @@
 title: 'an image is worth 16x16 words: transformers for image recognition at scale'
 date: 2023-02-24 19:39:08
 tags:
-    - 图像
     - vit
-    - backbone
+    - 图像表征
 categories:
   - [论文阅读]
 ---

@@ -3,13 +3,16 @@ title: 'VLMO: Unified Vision-Language Pre-Training with Mixture-of-Modality-Expe
 date: 2023-02-28 20:53:33
 tags:
     - 多模态
-    - ITR
-    - VQA
-    - NLVRR
     - VLMO
 categories:
   - [论文阅读]
 ---
+
+# 文章idea
+* 多模态架构中，`dual-encoder` 对图文检索任务非常友好，因为其可以分别`encode` 图文特征; `fusion-encoder` 对图文分类任务更加友好，因为其可以对图文特征进行深入融合。
+* 为了更好的利用这两种架构的优势，作者提出了新的`transformer`模块：`MoME`；以及基于这种模块的新模型：`VLMo`；
+
+
 
 # 文章主旨
 * 提出了新的 `transformer` 结构 `MoME`，其中的 `self-attention` 结构可以对齐不同的模态信息，模态 `expert` 可以获取特定的模态信息。
