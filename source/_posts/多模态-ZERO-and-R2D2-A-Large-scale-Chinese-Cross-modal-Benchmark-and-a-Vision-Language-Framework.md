@@ -4,13 +4,15 @@ title: >-
   Vision-Language Framework
 date: 2023-03-01 09:09:40
 tags:
-    - 多模态
     - R2D2
 categories:
   - [论文阅读]
+  - [多模态]
 ---
 我个人对该文章提出的模型架构并不是很推崇，因为其设计不够优美，有点过于复杂了。
 ***
+
+* 原始论文: [ZERO and R2D2: A Large-scale Chinese Cross-modal Benchmark and a Vision-Language Framework](https://arxiv.org/abs/2205.03860)
 
 # 文章idea
 * 中文多模态没有相应的数据集

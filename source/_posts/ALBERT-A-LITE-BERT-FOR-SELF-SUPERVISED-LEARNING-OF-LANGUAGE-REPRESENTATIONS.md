@@ -8,6 +8,8 @@ tags:
   - ALBERT
 ---
 
+* 原始论文: [ALBERT: A LITE BERT FOR SELF-SUPERVISED LEARNING OF LANGUAGE REPRESENTATIONS](https://arxiv.org/abs/1909.11942)
+
 ## ABSTRACT
 
 * 模型尺寸的不断变大对训练、和使用都带来了非常大的负担。为了解决这些问题，作者提出了两项参数减少技术，减少了内容的消耗、加速了训练的速度。除此作者使用`SOP`任务代替了`NSP`。

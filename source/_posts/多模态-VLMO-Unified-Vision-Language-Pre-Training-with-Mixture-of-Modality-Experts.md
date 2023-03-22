@@ -2,11 +2,13 @@
 title: 'VLMO: Unified Vision-Language Pre-Training with Mixture-of-Modality-Experts'
 date: 2023-02-28 20:53:33
 tags:
-    - 多模态
     - VLMO
 categories:
   - [论文阅读]
+  - [多模态]
 ---
+
+* 原始论文: [VLMO: Unified Vision-Language Pre-Training with Mixture-of-Modality-Experts](https://arxiv.org/abs/2111.02358)
 
 # 文章idea
 * 多模态架构中，`dual-encoder` 对图文检索任务非常友好，因为其可以分别`encode` 图文特征; `fusion-encoder` 对图文分类任务更加友好，因为其可以对图文特征进行深入融合。

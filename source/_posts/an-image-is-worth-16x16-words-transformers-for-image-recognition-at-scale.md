@@ -8,6 +8,8 @@ categories:
   - [论文阅读]
 ---
 
+* 原始论文: [an image is worth 16x16 words: transformers for image recognition at scale](https://arxiv.org/abs/2010.11929)
+
 # 文章主旨
 * 随着`transformer`在NLP领域取得巨大的成功，其在图像处理领域的应用也有很多尝试，本文是该方向上取得了突破，而且取得了不错的结果，从这个角度来讲，意义非凡。
 * 如果说是`transorfer`结构，其实不太准确，准确来讲应该是使用了`transformer-Encoder`。

@@ -1,16 +1,17 @@
 ---
 title: >-
-  Image as a Foreign Language: BEIT Pretraining for All Vision and
-  Vision-Language Tasks
+  Image as a Foreign Language: BEIT Pretraining for All Vision and Vision-Language Tasks
 date: 2023-03-02 10:37:04
 tags:
-    - 多模态
     - BEit3
 categories:
   - [论文阅读]
+  - [多模态]
 ---
 个人以为：该模型确实具备了大一统的`Level`，模型的设计方面：简单、优美、有效。
 ****
+
+* 原始论文: [Image as a Foreign Language: BEIT Pretraining for All Vision and Vision-Language Tasks](https://arxiv.org/abs/2208.10442)
 
 # 文章idea
 * 将`image`也看做是一种语言:`foreign language`。

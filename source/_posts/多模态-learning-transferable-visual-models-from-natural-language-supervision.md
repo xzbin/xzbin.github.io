@@ -3,11 +3,15 @@ title: learning transferable visual models from natural language supervision
 date: 2023-01-04 13:11:49
 categories:
   - [论文阅读]
-tags:
   - [多模态]
+tags:
   - CLIP
   - 图像表征
 ---
+
+* 原始论文: [learning transferable visual models from natural language supervision](http://proceedings.mlr.press/v139/radford21a)
+
+
 
 严格意义上来讲，这不算是多模态论文，最起码说不是专门以多模态为`topic` 而写的论文。
 # 文章idea

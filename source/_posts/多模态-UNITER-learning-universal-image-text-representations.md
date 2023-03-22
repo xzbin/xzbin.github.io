@@ -2,11 +2,13 @@
 title: 'UNITER: learning universal image-text representations'
 date: 2023-02-24 20:41:28
 tags:
-    - 多模态
     - UNITER
 categories:
   - [论文阅读]
+  - [多模态]
 ---
+
+* 原始论文: [UNITER: learning universal image-text representations](https://openreview.net/forum?id=S1eL4kBYwr)
 
 # 文章idea
 * 之前的图文相关任务均是`task-specific`，相互之间不能泛化，缺少统一解决`V+L`的模型方案。

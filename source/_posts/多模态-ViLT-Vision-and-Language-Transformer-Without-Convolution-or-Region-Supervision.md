@@ -2,11 +2,13 @@
 title: ViLT Vision-and-Language Transformer Without Convolution or Region Supervision
 categories:
   - [论文阅读]
+  - [多模态]
 date: 2023-02-07 18:59:21
 tags:
-  - 多模态
   - ViLT
 ---
+
+* 原始论文: [ViLT Vision-and-Language Transformer Without Convolution or Region Supervision](https://proceedings.mlr.press/v139/kim21k.html)
 
 # 文章idea
 * 文章认为`heavy image-encoder`无论在训练还是在真实的使用场景都是不好的，因此作者使用了足够`light` 并且`fast`的方式：直接怼`path`进行`linear projection`。

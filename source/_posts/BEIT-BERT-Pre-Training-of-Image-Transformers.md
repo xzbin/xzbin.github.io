@@ -6,9 +6,11 @@ tags:
 categories:
   - [论文阅读]
 ---
+
+* 原始论文: [BEIT: BERT Pre-Training of Image Transformers](https://ieeexplore.ieee.org/abstract/document/8614182/)
+
 # 文章主旨
 * 提出了一个新的视觉表征方案`BEiT`，基于自监督任务`MIM`:`masked image modeling`。
-
 
 # 模型架构
 ![beit.png](./beit.png)

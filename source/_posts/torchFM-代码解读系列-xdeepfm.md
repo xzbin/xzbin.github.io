@@ -2,11 +2,10 @@
 title: 'xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems'
 date: 2023-02-23 15:45:47
 tags: 
-    - 代码解读
-    - 推荐系统
     - xDeepFM
 categories: 
-  - 工程
+  - [代码解读]
+  - [推荐系统]
 ---
 
 

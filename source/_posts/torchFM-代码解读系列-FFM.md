@@ -2,11 +2,10 @@
 title: Field-aware Factorization Machines for CTR Prediction
 date: 2023-02-23 15:45:47
 tags: 
-    - 代码解读
-    - 推荐系统
     - FFM
 categories: 
-  - 工程
+  - [代码解读]
+  - [推荐系统]
 ---
 
 

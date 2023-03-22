@@ -9,6 +9,7 @@ tags:
   - GAN
 ---
 
+* 原始论文: [LoGAN: Generating Logos with a Generative Adversarial Neural Network Conditioned on color](https://ieeexplore.ieee.org/abstract/document/8614182/)
 
 本文提出了`LoGAN`框架用于logo生成，基于`AC-WGAN-GP`结构。其`condition` 是12种不同的颜色，以颜色进行logo类别的标识。该篇论文代码已经开源，[下载地址](https://github.com/ajki/LoGAN)
 

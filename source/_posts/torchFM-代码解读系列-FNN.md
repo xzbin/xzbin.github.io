@@ -2,11 +2,10 @@
 title: 'Deep Learning over Multi-field Categorical Data: A Case Study on User Response Prediction'
 date: 2023-02-23 15:45:47
 tags: 
-    - 代码解读
-    - 推荐系统
     - FNN
 categories: 
-  - 工程
+  - [代码解读]
+  - [推荐系统]
 ---
 
 * 原始论文：[Deep Learning over Multi-field Categorical Data: A Case Study on User Response Prediction](https://arxiv.org/abs/1601.02376)
