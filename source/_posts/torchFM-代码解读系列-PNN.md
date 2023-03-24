@@ -12,3 +12,6 @@ categories:
 * 原始论文: [Product-based Neural Networks for User Response Prediction](https://arxiv.org/abs/1611.00144)
 * 代码示例：[pnn.py](https://github.com/forrestneo/pytorch-fm/blob/master/torchfm/model/pnn.py)
 
+# 理论解读
+
+# 具体实现

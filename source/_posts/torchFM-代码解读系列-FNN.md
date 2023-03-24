@@ -13,6 +13,9 @@ categories:
 
 
 # 理论解读
-* `FNN` 可以理解成= `FM` +`DNN`
-* 
+* `FNN` 可以理解成= `(FM)` +`DNN`
+* `FNN` is a FM-initialized `MLP`
 # 具体实现
+![fnn.png](./fnn.png)
+
+* `MLP` 细节不做赘述 
