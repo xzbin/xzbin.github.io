@@ -2,11 +2,13 @@
 title: 'Pixel-BERT: Aligning Image Pixels with Text by Deep Multi-Modal Transformers'
 date: 2023-02-24 20:52:19
 tags:
-    - 多模态
     - Pixel-BERT
 categories:
   - [论文阅读]
+  - [多模态]
 ---
+
+* 原始论文: [Pixel-BERT: Aligning Image Pixels with Text by Deep Multi-Modal Transformers](https://arxiv.org/abs/2004.00849)
 
 # 文章idea
 * `image encoder`抛弃了基于检测的方法，原因是：1. 模型太大也太重了； 2. 基于开源数据预训练过的检测模型，其类别和`domain内容`都受限于数据集。所以所以作者使用了基于`CNN`的`backbone`。

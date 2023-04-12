@@ -8,6 +8,7 @@ categories:
 ---
 
 * 原始论文: [NFLAT: Non-Flat-Lattice Transformer for Chinese Named Entity Recognition](https://arxiv.org/pdf/2205.05832v3.pdf)
+* 官方代码：[nflat4cner](https://github.com/codermusou/nflat4cner)
 
 # 文章idea
 * `中文NER`与`英文`不同，中文字之间没有分隔符，不能直接获取词，也正是由于这部分信息的缺失，增加了`中文NER`任务的难度。
