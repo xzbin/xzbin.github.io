@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="我从18年开始偶然接触王者，那时候公司组织王者比赛，为了和同事一起玩，开始没有太大的兴趣。后来断断续续得玩，基本上都是无聊的时候，下载，打几局，再卸载。最高打到钻石5. 直到前段时间疫情原因，不能出去玩，重新下载了游戏。想着冲击一下王者段位。随着玩的时间越来越长，对游戏的理解也逐步深入。最终打到了星耀2【是的，又卸载了】。胜率也提高了很多。以下就是对这个游戏的一些理解，虽然不一定到位，但是确实对我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对王者荣耀理解">
+<meta property="og:url" content="http://yoursite.com/2022/05/03/%E5%AF%B9%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="xzbin">
+<meta property="og:description" content="我从18年开始偶然接触王者，那时候公司组织王者比赛，为了和同事一起玩，开始没有太大的兴趣。后来断断续续得玩，基本上都是无聊的时候，下载，打几局，再卸载。最高打到钻石5. 直到前段时间疫情原因，不能出去玩，重新下载了游戏。想着冲击一下王者段位。随着玩的时间越来越长，对游戏的理解也逐步深入。最终打到了星耀2【是的，又卸载了】。胜率也提高了很多。以下就是对这个游戏的一些理解，虽然不一定到位，但是确实对我">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-03T09:27:27.000Z">
+<meta property="article:modified_time" content="2025-03-06T14:50:52.932Z">
+<meta property="article:author" content="xzbin">
+<meta property="article:tag" content="游戏">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2022/05/03/%E5%AF%B9%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80%E7%90%86%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>对王者荣耀理解 | xzbin</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xzbin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-文章">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2022/05/03/%E5%AF%B9%E7%8E%8B%E8%80%85%E8%8D%A3%E8%80%80%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xzbin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xzbin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          对王者荣耀理解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-03 09:27:27" itemprop="dateCreated datePublished" datetime="2022-05-03T09:27:27+00:00">2022-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-06 14:50:52" itemprop="dateModified" datetime="2025-03-06T14:50:52+00:00">2025-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>我从18年开始偶然接触王者，那时候公司组织王者比赛，为了和同事一起玩，开始没有太大的兴趣。后来断断续续得玩，基本上都是无聊的时候，下载，打几局，再卸载。最高打到钻石5.</p>
+<p>直到前段时间疫情原因，不能出去玩，重新下载了游戏。想着冲击一下王者段位。随着玩的时间越来越长，对游戏的理解也逐步深入。最终打到了星耀2【是的，又卸载了】。胜率也提高了很多。以下就是对这个游戏的一些理解，虽然不一定到位，但是确实对我产生了帮助：</p>
+<h1 id="这是一个推塔游戏，不是打架游戏。"><a href="#这是一个推塔游戏，不是打架游戏。" class="headerlink" title="这是一个推塔游戏，不是打架游戏。"></a>这是一个推塔游戏，不是打架游戏。</h1><p>打架只是手段，不是目的。很多人沉迷打架无法自拔。打架是为了获取更好的资源【金币+龙+推塔】。</p>
+<h1 id="打团本质上是一场力量的pk"><a href="#打团本质上是一场力量的pk" class="headerlink" title="打团本质上是一场力量的pk"></a>打团本质上是一场力量的pk</h1><p>2v1 的胜率肯定比1v1的胜率高一些。所以局面很被动的时候，我会跟着战绩最高的人一起走，一是保护他，二是可以增加团战的力量。</p>
+<h1 id="找准自己的角色定位"><a href="#找准自己的角色定位" class="headerlink" title="找准自己的角色定位"></a>找准自己的角色定位</h1><p>这是一场5v5的游戏，每个人在其中都有自己的角色，一定要找准自己的定位。</p>
+<ul>
+<li>射手：主要输出位。打团的时候要站在后排输出。</li>
+<li>打野：主要输出位，负责各条线之间灵活支援，抓人，扩大优势。打团的时候切敌方后排输出，也负责团战后清理敌方残血。</li>
+<li>法师：团队的次级输出位，负责输出和控制。</li>
+<li>辅助：能扛伤或能控。虽然输出伤害很高，但是比较脆。需要辅助来保护。</li>
+<li>战士/坦克：血比较厚，团战中前排承伤害。</li>
+</ul>
+<h1 id="兵线-推塔"><a href="#兵线-推塔" class="headerlink" title="兵线+推塔"></a>兵线+推塔</h1><ul>
+<li>运营好兵线非常重要。团战胜利后要及时清理兵线，推塔，扩大优势。</li>
+<li>团战中也可以分出一个人去带兵线【4个人打团，1人带线】。</li>
+<li>如果我方处于劣势，敌方一直压线。打野或者上单可以去带一路兵线偷塔，虽然不一定成功。但是可以给对方一点压力。这样我方也可以有机会发育。有点围魏救赵的意思。</li>
+<li>一般情况下：带兵线的时候不要过于深入对方领地，兵线过河即可。确定安全之后再继续推进。</li>
+</ul>
+<h1 id="意识"><a href="#意识" class="headerlink" title="意识"></a>意识</h1><ul>
+<li>我的理解就是认清自己的角色定义。如果不能carry 全场，就老老实实扮演好自己的角色。多支援其他路，多看小地图。先保证自己活着，再考虑杀人，猥琐发育。</li>
+<li>时刻观察队友的动向，大家在哪里集结了？是不是要打团了？我要不要去？队友被5排的时候大家一般非常默契。单排的时候最怕瞎带节奏的，后面输出还没有到位呢，前排自己就上了，白送人头不说，把后面的人也带崩了。</li>
+<li>带线和推塔的意识很重要，见过太多团战胜利后不去推塔扩大优势，拖到最后游戏输掉的。</li>
+<li>经济是一切操作的基础，1w经济的法师对5000经济肉坦也没有压力。所以要保证自己的发育。手勤一些。我个人感觉多带线，经济都不会差的。</li>
+</ul>
+<h1 id="英雄"><a href="#英雄" class="headerlink" title="英雄"></a>英雄</h1><ul>
+<li>要了解自己英雄的主要输出技能和保命技能，连招技能要做到心中有数。多打几局匹配和训练场能够加深对英雄的理解。</li>
+<li>对线或者PK的时候，要注意躲避对方的技能。如果对方打不到我，我却能打到他，岂不是就赢了？没有必要硬抗伤害。</li>
+</ul>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul>
+<li>多找几个好朋友一起玩，有默契了，上分会稳一些，没有条件的，每次对局之后顺手加一下mvp，下次玩的时候，也可以一起上分。</li>
+<li>以上的理解都不如抱大腿，躺赢舒服。</li>
+</ul>
+<p>无论怎样，感觉都逃不过天美制裁，也没有办法。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B8%B8%E6%88%8F/" rel="tag"># 游戏</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/05/PP-OCR-A-Practical-Ultra-Lightweight-OCR-System/" rel="prev" title="PP-OCR: A Practical Ultra Lightweight OCR System">
+      <i class="fa fa-chevron-left"></i> PP-OCR: A Practical Ultra Lightweight OCR System
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2023/01/04/%E5%A4%9A%E6%A8%A1%E6%80%81-learning-transferable-visual-models-from-natural-language-supervision/" rel="next" title="learning transferable visual models from natural language supervision">
+      learning transferable visual models from natural language supervision <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%99%E6%98%AF%E4%B8%80%E4%B8%AA%E6%8E%A8%E5%A1%94%E6%B8%B8%E6%88%8F%EF%BC%8C%E4%B8%8D%E6%98%AF%E6%89%93%E6%9E%B6%E6%B8%B8%E6%88%8F%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">这是一个推塔游戏，不是打架游戏。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%93%E5%9B%A2%E6%9C%AC%E8%B4%A8%E4%B8%8A%E6%98%AF%E4%B8%80%E5%9C%BA%E5%8A%9B%E9%87%8F%E7%9A%84pk"><span class="nav-number">2.</span> <span class="nav-text">打团本质上是一场力量的pk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%BE%E5%87%86%E8%87%AA%E5%B7%B1%E7%9A%84%E8%A7%92%E8%89%B2%E5%AE%9A%E4%BD%8D"><span class="nav-number">3.</span> <span class="nav-text">找准自己的角色定位</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B5%E7%BA%BF-%E6%8E%A8%E5%A1%94"><span class="nav-number">4.</span> <span class="nav-text">兵线+推塔</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%84%8F%E8%AF%86"><span class="nav-number">5.</span> <span class="nav-text">意识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8B%B1%E9%9B%84"><span class="nav-number">6.</span> <span class="nav-text">英雄</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">7.</span> <span class="nav-text">其他</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xzbin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xzbin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

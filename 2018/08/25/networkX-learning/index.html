@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="最近一直在看知识图谱相关内容，networkx是python下一款优秀的图计算处理工具，下文是教程学习笔记。 A.1 Create a graph">
+<meta property="og:type" content="article">
+<meta property="og:title" content="networkX learning">
+<meta property="og:url" content="http://yoursite.com/2018/08/25/networkX-learning/index.html">
+<meta property="og:site_name" content="xzbin">
+<meta property="og:description" content="最近一直在看知识图谱相关内容，networkx是python下一款优秀的图计算处理工具，下文是教程学习笔记。 A.1 Create a graph">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-08-25T15:49:27.000Z">
+<meta property="article:modified_time" content="2025-03-06T14:50:52.854Z">
+<meta property="article:author" content="xzbin">
+<meta property="article:tag" content="图">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2018/08/25/networkX-learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>networkX learning | xzbin</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">xzbin</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-首页">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-文章">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>文章</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-分类">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-关于">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/25/networkX-learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xzbin">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xzbin">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          networkX learning
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-08-25 15:49:27" itemprop="dateCreated datePublished" datetime="2018-08-25T15:49:27+00:00">2018-08-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2025-03-06 14:50:52" itemprop="dateModified" datetime="2025-03-06T14:50:52+00:00">2025-03-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">工程</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>最近一直在看知识图谱相关内容，<a target="_blank" rel="noopener" href="https://networkx.github.io/">networkx</a>是python下一款优秀的图计算处理工具，下文是教程学习笔记。</p>
+<h2 id="A-1-Create-a-graph"><a href="#A-1-Create-a-graph" class="headerlink" title="A.1 Create a graph"></a>A.1 Create a graph</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个空图</span></span><br><span class="line">g = nx.Graph()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成一个图 10个节点 9条边的图： 线性连接</span></span><br><span class="line">gg = nx.path_graph(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 另外两种创建图的方式</span></span><br><span class="line">g1 = nx.DiGraph(gg)</span><br><span class="line">edgelist = [(<span class="number">0</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">3</span>)]</span><br><span class="line">g2 = nx.Graph(edgelist)</span><br><span class="line"><span class="built_in">print</span>(g2.nodes())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="A-2-Nodes"><a href="#A-2-Nodes" class="headerlink" title="A.2 Nodes"></a>A.2 Nodes</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 增加一个节点</span></span><br><span class="line">g.add_node(<span class="string">&quot;1&quot;</span>, &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;xzbin&quot;</span>, <span class="string">&quot;age&quot;</span>: <span class="number">15</span>&#125;)</span><br><span class="line"><span class="comment"># 增加一组节点</span></span><br><span class="line">g.add_nodes_from([<span class="number">2</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">45</span>, <span class="number">7</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将图gg中的节点增加到 图g中 下图中两种方式均可以 (此时有个问题：下面两种方式增加节点：会有点的重复)</span></span><br><span class="line">g.add_nodes_from(gg)</span><br><span class="line">g.add_node(gg)</span><br></pre></td></tr></table></figure>
+<h2 id="A-3-Edges"><a href="#A-3-Edges" class="headerlink" title="A.3 Edges"></a>A.3 Edges</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 方式1</span></span><br><span class="line">g.add_edge(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式2</span></span><br><span class="line">e = (<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">g.add_edge(*e)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式3</span></span><br><span class="line">g.add_edges_from([(<span class="string">&quot;4&quot;</span>, <span class="string">&quot;2&quot;</span>), (<span class="string">&quot;1&quot;</span>, <span class="string">&quot;6&quot;</span>)])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 方式4</span></span><br><span class="line">g.add_edges_from(gg.edges())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 增加一个节点</span></span><br><span class="line">g.add_node(<span class="string">&quot;spam&quot;</span>)</span><br><span class="line"><span class="comment"># 增加一组节点</span></span><br><span class="line">g.add_nodes_from(<span class="string">&quot;spam&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="A-4-What-to-user-as-nodes-and-edges"><a href="#A-4-What-to-user-as-nodes-and-edges" class="headerlink" title="A.4 What to user as nodes and edges"></a>A.4 What to user as nodes and edges</h2><h2 id="A-5-Accessing-edges-and-neighbors"><a href="#A-5-Accessing-edges-and-neighbors" class="headerlink" title="A.5 Accessing edges and neighbors"></a>A.5 Accessing edges and neighbors</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="A-6-Adding-attributes-to-graphs-nodes-and-edges"><a href="#A-6-Adding-attributes-to-graphs-nodes-and-edges" class="headerlink" title="A.6 Adding attributes to graphs, nodes, and edges"></a>A.6 Adding attributes to graphs, nodes, and edges</h2><p>图、节点、边都可以有属性（比如 权重、颜色、标签）。属性都是key-value类型。</p>
+<h3 id="A-6-1-Graph-attributes"><a href="#A-6-1-Graph-attributes" class="headerlink" title="A.6.1 Graph attributes"></a>A.6.1 Graph attributes</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gg = nx.Graph(day=<span class="string">&quot;Friday&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(gg.graph)</span><br><span class="line"></span><br><span class="line">gg.graph[<span class="string">&#x27;day&#x27;</span>] = <span class="string">&#x27;one&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(gg.graph)</span><br></pre></td></tr></table></figure>
+<h3 id="A-6-2-Node-attributes"><a href="#A-6-2-Node-attributes" class="headerlink" title="A.6.2 Node attributes"></a>A.6.2 Node attributes</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gg = nx.Graph(day=<span class="string">&quot;Friday&quot;</span>)</span><br><span class="line">gg.add_node(<span class="string">&#x27;people&#x27;</span>, name=<span class="string">&#x27;xzbin&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(gg.node[<span class="string">&#x27;people&#x27;</span>][<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">gg.node[<span class="string">&#x27;people&#x27;</span>][<span class="string">&#x27;name&#x27;</span>] = <span class="string">&#x27;xzbin_new&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(gg.node[<span class="string">&#x27;people&#x27;</span>][<span class="string">&#x27;name&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="A-6-3-Edge-Attributes"><a href="#A-6-3-Edge-Attributes" class="headerlink" title="A.6.3 Edge Attributes"></a>A.6.3 Edge Attributes</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gg = nx.Graph(day=<span class="string">&quot;Friday&quot;</span>)</span><br><span class="line">gg.add_edge(<span class="number">1</span>, <span class="number">2</span>, &#123;<span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;xzbin&#x27;</span>&#125;)</span><br><span class="line"><span class="built_in">print</span>(gg.get_edge_data(<span class="number">1</span>, <span class="number">2</span>)[<span class="string">&#x27;name&#x27;</span>])</span><br><span class="line">gg.get_edge_data(<span class="number">1</span>, <span class="number">2</span>)[<span class="string">&#x27;name&#x27;</span>] = <span class="string">&#x27;xzbin_new&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(gg.get_edge_data(<span class="number">1</span>, <span class="number">2</span>)[<span class="string">&#x27;name&#x27;</span>])</span><br></pre></td></tr></table></figure>
+<h2 id="A-7-Directed-graphs"><a href="#A-7-Directed-graphs" class="headerlink" title="A.7 Directed graphs"></a>A.7 Directed graphs</h2><p>有向图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">g = nx.DiGraph()</span><br><span class="line">g.add_weighted_edges_from([(<span class="number">1</span>, <span class="number">2</span>, <span class="number">0.5</span>), (<span class="number">2</span>, <span class="number">4</span>, <span class="number">0.9</span>)])</span><br><span class="line"><span class="built_in">print</span>(g.out_degree(<span class="number">1</span>), g.degree(<span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(g.in_degree(<span class="number">2</span>, weight=<span class="string">&#x27;weight&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(g.successors(<span class="number">2</span>), g.predecessors(<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(g.neighbors(<span class="number">2</span>), g.neighbors(<span class="number">1</span>), g.neighbors(<span class="number">4</span>)) <span class="comment"># 需要注意</span></span><br><span class="line"></span><br><span class="line">gg = nx.Graph(g)</span><br><span class="line"><span class="built_in">print</span>(gg.neighbors(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<h2 id="A-8-Multigraphs"><a href="#A-8-Multigraphs" class="headerlink" title="A.8 Multigraphs"></a>A.8 Multigraphs</h2><p>允许两个点之间存在多个边</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">g = nx.MultiDiGraph()</span><br><span class="line">g.add_weighted_edges_from([(<span class="number">1</span>, <span class="number">2</span>, <span class="number">0.3</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">0.31</span>)])</span><br><span class="line"><span class="built_in">print</span>(g.get_edge_data(<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line"><span class="built_in">print</span>(nx.shortest_path_length(g, <span class="number">1</span>, <span class="number">2</span>,weight=<span class="literal">True</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="A-9-Graph-generators-and-graph-operations"><a href="#A-9-Graph-generators-and-graph-operations" class="headerlink" title="A.9 Graph generators and graph operations"></a>A.9 Graph generators and graph operations</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">g = nx.Graph()</span><br><span class="line">g.add_edges_from([(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">3</span>), (<span class="number">4</span>, <span class="number">5</span>), (<span class="number">3</span>, <span class="number">5</span>)])</span><br><span class="line">sub_g = nx.subgraph(g, (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line">sub_g = nx.Graph()</span><br><span class="line">sub_g.add_edge(<span class="number">7</span>, <span class="number">8</span>)</span><br><span class="line">gg = nx.union(g, sub_g)</span><br><span class="line"><span class="built_in">print</span>(gg.edges())</span><br><span class="line"></span><br><span class="line">sub_g1 = nx.Graph()</span><br><span class="line">sub_g1.add_edge(<span class="number">11</span>, <span class="number">10</span>)</span><br><span class="line">gg = nx.compose(g,sub_g1)</span><br><span class="line"><span class="built_in">print</span>(gg.edges())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 各种典型图</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">petersen = nx.petersen_graph()</span><br><span class="line">tutte = nx.tutte_graph()</span><br><span class="line">maze = nx.sedgewick_maze_graph()</span><br><span class="line">tet = nx.tetrahedral_graph()</span><br><span class="line">nx.draw(tet)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="built_in">print</span>(petersen.edges())</span><br><span class="line"></span><br><span class="line">k5 = nx.complete_graph(<span class="number">5</span>)</span><br><span class="line">k3_5 = nx.complete_bipartite_graph(<span class="number">3</span>,<span class="number">5</span>)</span><br><span class="line">barbell = nx.barbell_graph(<span class="number">10</span>,<span class="number">10</span>)</span><br><span class="line">lollipop = nx.lollipop_graph(<span class="number">10</span>,<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">er = nx.erdos_renyi_graph(<span class="number">100</span>,<span class="number">0.15</span>)</span><br><span class="line">ws = nx.watts_strogatz_graph(<span class="number">20</span>,<span class="number">3</span>,<span class="number">0.1</span>)</span><br><span class="line">ba = nx.barabasi_albert_graph(<span class="number">100</span>,<span class="number">5</span>)</span><br><span class="line">red = nx.random_lobster(<span class="number">100</span>,<span class="number">0.9</span>,<span class="number">0.9</span>)</span><br><span class="line"></span><br><span class="line">nx.write_edgelist(k5,<span class="string">&#x27;D:\\g.txt&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">nx.draw(lollipop)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h2 id="A-10-Analyzing-graphs"><a href="#A-10-Analyzing-graphs" class="headerlink" title="A.10 Analyzing graphs"></a>A.10 Analyzing graphs</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">g = nx.Graph()</span><br><span class="line">g.add_edges_from([(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">1</span>, <span class="number">3</span>)])</span><br><span class="line">g.add_node(<span class="string">&quot;spam&quot;</span>)</span><br><span class="line"><span class="comment"># print(list(nx.connected_components(g)))</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># print(g.degree())</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sorted</span>(d <span class="keyword">for</span> n, d <span class="keyword">in</span> g.degree().items()))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(nx.clustering(g))</span><br></pre></td></tr></table></figure>
+<h2 id="A-11-Drawing-graphs"><a href="#A-11-Drawing-graphs" class="headerlink" title="A.11 Drawing graphs"></a>A.11 Drawing graphs</h2><p>前文中 已经体现</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE/" rel="tag"># 图</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/17/neo4j-learning-note/" rel="prev" title="neo4j介绍">
+      <i class="fa fa-chevron-left"></i> neo4j介绍
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/16/GAN%E7%B3%BB%E5%88%97-LoGAN-Generating-Logos-with-a-Generative-Adversarial-Neural-Network-Conditioned-on-color/" rel="next" title="LoGAN: Generating Logos with a Generative Adversarial Neural Network Conditioned on color">
+      LoGAN: Generating Logos with a Generative Adversarial Neural Network Conditioned on color <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-1-Create-a-graph"><span class="nav-number">1.</span> <span class="nav-text">A.1 Create a graph</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-2-Nodes"><span class="nav-number">2.</span> <span class="nav-text">A.2 Nodes</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-3-Edges"><span class="nav-number">3.</span> <span class="nav-text">A.3 Edges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-4-What-to-user-as-nodes-and-edges"><span class="nav-number">4.</span> <span class="nav-text">A.4 What to user as nodes and edges</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-5-Accessing-edges-and-neighbors"><span class="nav-number">5.</span> <span class="nav-text">A.5 Accessing edges and neighbors</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-6-Adding-attributes-to-graphs-nodes-and-edges"><span class="nav-number">6.</span> <span class="nav-text">A.6 Adding attributes to graphs, nodes, and edges</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#A-6-1-Graph-attributes"><span class="nav-number">6.1.</span> <span class="nav-text">A.6.1 Graph attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-6-2-Node-attributes"><span class="nav-number">6.2.</span> <span class="nav-text">A.6.2 Node attributes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-6-3-Edge-Attributes"><span class="nav-number">6.3.</span> <span class="nav-text">A.6.3 Edge Attributes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-7-Directed-graphs"><span class="nav-number">7.</span> <span class="nav-text">A.7 Directed graphs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-8-Multigraphs"><span class="nav-number">8.</span> <span class="nav-text">A.8 Multigraphs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-9-Graph-generators-and-graph-operations"><span class="nav-number">9.</span> <span class="nav-text">A.9 Graph generators and graph operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-10-Analyzing-graphs"><span class="nav-number">10.</span> <span class="nav-text">A.10 Analyzing graphs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-11-Drawing-graphs"><span class="nav-number">11.</span> <span class="nav-text">A.11 Drawing graphs</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">xzbin</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xzbin</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
